@@ -7,7 +7,9 @@
     <title>Premier projet React</title>
 </head>
 <body>
-    <div id='root'>Premiers pas avec React</div>
+    <div id='mainRoot'></div>
+    <div id='rooter'>Premiers pas avec React</div>
+    <div class='fragment'></div>
     <!-- Intégrations des liens CDN -->
     <script 
         crossorigin 
@@ -19,13 +21,44 @@
         src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
     </script>
     <script type="text/babel">
-    function MyComponent() {
-        return <div>Mon composant apparaît bien à cet emplacement </div>
+    
+    function Header() { // Ecriture du premier composant 
+        return <h1>Les transformateurs électriques</h1>
     }
+    /* function MyDivRooterComponent() { 
+        return <p>Un transformateur électrique est une machine électrique permettant de modifier les valeurs de tension et 
+            d'intensité du courant délivrées par une soruce d'énergie électrique alternative, en un système de tension et de courant de 
+            valeurs différentes, mais de même fréquence et de même forme. Il effectue cette transformation avec un excellent rendement.</p>
+    } */
+    function Description() {
+        return (<p>Ici achetez toutes les plantes dont vous avez besoin</p>)
+    }
+
+    function SecondMainTitle() {
+        return (<h2>Notre boutique</h2>)
+    }
+
+    function BoutiqueItems() {
+        return(<p>Une large gamme de produits vous attend bientôt</p>)
+    }
+    // render = générer ; ReactDOM permet d'attacher le composant React à index.html
+        /* ReactDOM.render( 
+            <MyDivRooterComponent />, 
+            document.getElementById('rooter')
+        ) */
         ReactDOM.render(
-            <MyComponent />, 
-            document.getElementById('root')
+            <Header />, // JSX : mêle JS et HTML => spécificité de React, est un langage à balises
+            document.querySelector('#mainRoot')
         )
+        ReactDOM.render(
+            <div><Header /><Description /></div>,
+            document.querySelector('#mainRoot')
+        )
+        ReactDOM.render(
+            <React.Fragment><SecondMainTitle /><BoutiqueItems /></React.Fragment>,
+            document.querySelector('.fragment')
+        )
+    console.log(Header); // permet de voir que le composant Header est un objet
     </script>
 </body>
 </html>
