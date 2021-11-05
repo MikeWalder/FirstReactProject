@@ -9,7 +9,8 @@
 <body>
     <div id='mainRoot'></div>
     <div id='rooter'>Premiers pas avec React</div>
-    <div class='fragment'></div>
+    <div id='fragment1'></div>
+    <div id='titleDelivery'></div>
     <!-- Intégrations des liens CDN -->
     <script 
         crossorigin 
@@ -41,24 +42,52 @@
     function BoutiqueItems() {
         return(<p>Une large gamme de produits vous attend bientôt</p>)
     }
-    // render = générer ; ReactDOM permet d'attacher le composant React à index.html
+    
         /* ReactDOM.render( 
             <MyDivRooterComponent />, 
             document.getElementById('rooter')
         ) */
-        ReactDOM.render(
-            <Header />, // JSX : mêle JS et HTML => spécificité de React, est un langage à balises
+        /* ReactDOM.render(
+            <Header />, 
             document.querySelector('#mainRoot')
-        )
-        ReactDOM.render(
-            <div><Header /><Description /></div>,
+        ) */
+        ReactDOM.render( // render = générer ; ReactDOM permet d'attacher le composant React à index.html
+            <div><Header /><Description /></div>, // JSX : mêle JS et HTML => spécificité de React, est un langage à balises
             document.querySelector('#mainRoot')
         )
         ReactDOM.render(
             <React.Fragment><SecondMainTitle /><BoutiqueItems /></React.Fragment>,
-            document.querySelector('.fragment')
+            document.querySelector('#fragment1')
         )
     console.log(Header); // permet de voir que le composant Header est un objet
+
+    // Manipulation des données dans les composants JSX
+    function TypeDeliveryAndPrice() {
+        const simpleText = "Nos offres de livraison";
+        const simpleTextTva = "Prix de la livraison TTC";
+        const priceMR = 3.20;
+        const priceCol = 3.35;
+        const priceLP = 3.95;
+    return (<div>
+        <h2>{ simpleText.toUpperCase() }</h2>
+        <ul>
+            <li>Mondial Relay : { priceMR } €</li>
+            <li>Colissimo : { priceCol } €</li>
+            <li>La Poste : { priceLP } €</li>
+        </ul>
+        <h2>{ simpleTextTva.toUpperCase() }</h2>
+        <ul>
+            <li>Mondial Relay : { (priceMR * 1.2).toPrecision(3) } €</li>
+            <li>Colissimo : { priceCol * 1.2 } €</li>
+            <li>La Poste : { priceLP * 1.2 } €</li>
+        </ul>
+        </div>
+        )
+    }
+        ReactDOM.render(
+            <div><TypeDeliveryAndPrice /></div>,
+            document.querySelector('#titleDelivery')
+        )
     </script>
 </body>
 </html>
