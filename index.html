@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css" />
     <title>Premier projet React</title>
 </head>
 <body>
     <div id='mainRoot'></div>
-    <div id='rooter'>Premiers pas avec React</div>
+    <div id='rooter'><p>Premiers pas avec React</p></div>
     <div id='fragment1'></div>
     <div id='titleDelivery'></div>
+    <div id='img_logo'></div>
     <!-- Intégrations des liens CDN -->
     <script 
         crossorigin 
@@ -24,7 +26,7 @@
     <script type="text/babel">
     
     function Header() { // Ecriture du premier composant 
-        return <h1>Les transformateurs électriques</h1>
+        return <div><h1>Les transformateurs électriques</h1><hr /></div>
     }
     /* function MyDivRooterComponent() { 
         return <p>Un transformateur électrique est une machine électrique permettant de modifier les valeurs de tension et 
@@ -68,6 +70,8 @@
         const priceMR = 3.20;
         const priceCol = 3.35;
         const priceLP = 3.95;
+        const tva = true;
+
     return (<div>
         <h2>{ simpleText.toUpperCase() }</h2>
         <ul>
@@ -78,15 +82,33 @@
         <h2>{ simpleTextTva.toUpperCase() }</h2>
         <ul>
             <li>Mondial Relay : { (priceMR * 1.2).toPrecision(3) } €</li>
-            <li>Colissimo : { priceCol * 1.2 } €</li>
-            <li>La Poste : { priceLP * 1.2 } €</li>
+            <li>Colissimo : { tva ? priceCol * 1.2 : null } €</li>
+            <li>La Poste : { tva ? priceLP * 1.2 : null } €</li>
         </ul>
         </div>
         )
     }
+
         ReactDOM.render(
             <div><TypeDeliveryAndPrice /></div>,
             document.querySelector('#titleDelivery')
+        )
+
+    function DisplayImage() {
+        const relativeImage = './img/logo.png';
+        const relative = 'Logo quelconque';
+        const relativeTitle = 'Logo du site';
+
+        return (
+            <div>
+                <img src={relativeImage} alt={relative} title={relativeTitle}></img>
+            </div>
+        )
+    }
+
+        ReactDOM.render(
+            <div><DisplayImage /></div>,
+            document.querySelector('#img_logo')
         )
     </script>
 </body>
